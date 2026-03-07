@@ -31,13 +31,45 @@
     />
 
     <!-- Adding Font Style -->
-     <style>
-        *{
-            font-family: "Geist", sans-serif;
-        }
-     </style>
+    <style>
+      * {
+        font-family: "Geist", sans-serif;
+      }
+    </style>
   </head>
   <body>
-    <h2>Hello World</h2>
+    <header>
+      <div class="flex flex-col justify-center items-center gap-2">
+        <img src="assets/github-logo.png" alt="" />
+        <h1 class="text-3xl">GitHub Issues Tracker</h1>
+        <p class="text-[#D9D9D9]">Sign in to manage your issues</p>
+      </div>
+
+      <div class="login flex justify-center items-center mt-6">
+        <fieldset class="fieldset w-xs p-4">
+          <div class="mb-3">
+            <label class="label text-[16px] text-[black]">Username</label>
+            <input type="email" class="input" placeholder="Enter Username" />
+            <label class="text-primary">Default: admin</label>
+          </div>
+
+          <div class="mb-3">
+            <label class="label text-[16px] text-[black]">Password</label>
+            <input type="password" class="input" placeholder="Enter Password" />
+            <label class="text-primary">Default: admin123</label>
+          </div>
+
+          <button class="btn btn-primary mt-4">Sign In</button>
+          <div class="divider text-slate-700 font-medium">OR</div>
+          <div class="login-info">
+          <h2 class="text-center">Demo Credentials</h2>
+          <div class="bg-[#F8FAFC] p-5 text-[16px] text-center">
+            <p>Username: admin</p>
+            <p>Password: admin123</p>
+          </div>
+        </div>
+        </fieldset>
+      </div>
+    </header>
   </body>
 </html>
