@@ -16,7 +16,7 @@ async function fetchIssues() {
   allIssues = jsonResponse.data;
 
   setActiveButton(btnAll);
-  
+
   renderIssues(allIssues);
 }
 
@@ -27,6 +27,17 @@ function renderIssues(issues) {
     issuesCounter.textContent = issues.length;
   }
 
+  const labelConfig = {
+    "help wanted": { badgeClass: "badge-warning", icon: "fa-life-ring" },
+    bug: { badgeClass: "badge-error", icon: "fa-bug" },
+    enhancement: { badgeClass: "badge-success", icon: "fa-star" },
+    "good first issue": {
+      badgeClass: "badge-secondary",
+      icon: "fa-triangle-exclamation",
+    },
+    documentation: { badgeClass: "badge-neutral", icon: "fa-tag" },
+  };
+
   issues.forEach((issue) => {
     const title = issue.title;
     const desc = issue.description;
@@ -35,6 +46,7 @@ function renderIssues(issues) {
     const id = issue.id;
     const author = issue.author;
     const date = issue.createdAt.slice(0, 10);
+    const labels = issue.labels;
 
     const isClosed = status.toLowerCase() === "closed";
     const statusIcon = isClosed
@@ -49,6 +61,31 @@ function renderIssues(issues) {
       priorityColor = "bg-yellow-100 text-yellow-700";
     if (priority.toLowerCase() === "low")
       priorityColor = "bg-blue-100 text-blue-600";
+
+    let labelsHTML = "";
+    if (labels.length > 0) {
+      const badges = labels
+        .map((labelName) => {
+          const lowerLabel = labelName.toLowerCase();
+          const config = labelConfig[lowerLabel];
+
+          return `
+          <div class="badge badge-soft ${config.badgeClass} rounded-sm px-2 py-3">
+            <p class="text-xs font-semibold flex items-center gap-1">
+              <i class="fa-solid ${config.icon}"></i>
+              <span class="uppercase">${labelName}</span>
+            </p>
+          </div>
+        `;
+        })
+        .join("");
+
+      labelsHTML = `
+        <div class="flex flex-wrap gap-2 mt-3 pb-2 border-b border-gray-100">
+          ${badges}
+        </div>
+      `;
+    }
 
     const cardHTML = `
       <div class="status-border w-full border-t-4 ${borderColor} rounded-sm transition-transform hover:-translate-y-1 hover:shadow-md">
@@ -66,9 +103,10 @@ function renderIssues(issues) {
           <div class="mt-3 flex-grow">
             <p class="issue-title text-lg font-semibold leading-tight">${title}</p>
             <p class="issue-desc text-sm text-[#64748B] mt-2 line-clamp-2">${desc}</p>
+            ${labelsHTML}
           </div>
 
-          <div class="mt-4 text-sm pt-3 border-t border-gray-100">
+          <div class="mt-4 text-sm pt-3">
             <p class="text-gray-500 font-medium">
               #<span class="text-gray-900">${id}</span> by <span class="text-gray-900">${author}</span>
             </p>
@@ -81,18 +119,18 @@ function renderIssues(issues) {
 
     issuesGrid.insertAdjacentHTML("beforeend", cardHTML);
   });
-  
 }
 
 function setActiveButton(activeBtn) {
-  [btnAll, btnOpen, btnClosed].forEach(btn => {
+  [btnAll, btnOpen, btnClosed].forEach((btn) => {
     btn.classList.add("btn-outline");
     btn.classList.remove("btn-primary");
   });
-  
+
   activeBtn.classList.remove("btn-outline");
   activeBtn.classList.add("btn-primary");
 }
+
 btnAll.addEventListener("click", () => {
   setActiveButton(btnAll);
   renderIssues(allIssues);
@@ -101,7 +139,7 @@ btnAll.addEventListener("click", () => {
 btnOpen.addEventListener("click", () => {
   setActiveButton(btnOpen);
   const openIssues = allIssues.filter(
-    (issue) => issue.status.toLowerCase() === "open"
+    (issue) => issue.status.toLowerCase() === "open",
   );
   renderIssues(openIssues);
 });
@@ -109,7 +147,7 @@ btnOpen.addEventListener("click", () => {
 btnClosed.addEventListener("click", () => {
   setActiveButton(btnClosed);
   const closedIssues = allIssues.filter(
-    (issue) => issue.status.toLowerCase() === "closed"
+    (issue) => issue.status.toLowerCase() === "closed",
   );
   renderIssues(closedIssues);
 });
