@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home page</title>
-        <!-- Daisy UI + Tailwind CSS Integration  -->
+    <!-- Daisy UI + Tailwind CSS Integration  -->
     <link
       href="https://cdn.jsdelivr.net/npm/daisyui@5"
       rel="stylesheet"
@@ -35,9 +35,35 @@
         font-family: "Geist", sans-serif;
       }
     </style>
+  </head>
+  <body>
+    <header> 
+      <div class="navbar bg-base-100 shadow-sm px-5">
+        <div class="flex-1">
+          <div class="flex items-center gap-2">
+            <img class="max-w-[36px]" src="assets/github-logo.png" alt="" />
+            <h2 class="text-xl font-semibold">GitHub Issues Tracker</h2>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <div class="input">
+            <i class="fa-brands fa-sistrix"></i>
+            <input
+            type="text"
+            placeholder="Search"
+            class="border-0 w-24 md:w-auto"
+          />
+          </div>
+          <div>
+            <button class="btn btn-primary w-max">+ New Issue</button>
+          </div>
+        </div>
+      </div>
+    </header>
 
-</head>
-<body>
-    <h1>Welcome</h1>
-</body>
+    <main>
+        
+    </main>
+    <script src="scripts/main.js"></script>
+  </body>
 </html>
