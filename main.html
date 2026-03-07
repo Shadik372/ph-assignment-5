@@ -1,108 +1,98 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home page</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/daisyui@5"
-      rel="stylesheet"
-      type="text/css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet" />
 
     <style>
-      * {
-        font-family: "Geist", sans-serif;
-      }
+        * {
+            font-family: "Geist", sans-serif;
+        }
     </style>
-  </head>
-  <body class="bg-[#F8FAFC]">
-    
+</head>
+
+<body class="bg-[#F8FAFC]">
     <header class="mx-auto">
-      <div class="navbar bg-base-100 shadow-sm px-5 py-3 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-2">
-        
-        <div class="flex-1 w-full flex justify-center md:justify-start">
-          <div class="flex items-center gap-2">
-            <img class="max-w-[36px]" src="assets/github-logo.png" alt="" />
-            <h2 class="text-xl font-semibold">GitHub Issues Tracker</h2>
-          </div>
+        <div
+            class="navbar bg-base-100 shadow-sm px-5 py-3 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-2">
+            <div class="flex-1 w-full flex justify-center md:justify-start">
+                <div class="flex items-center gap-2">
+                    <img class="max-w-[36px]" src="assets/github-logo.png" alt="" />
+                    <h2 class="text-xl font-semibold">GitHub Issues Tracker</h2>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row w-full md:w-auto gap-3 md:gap-2 items-stretch sm:items-center">
+                <div class="input flex items-center gap-2 grow sm:grow-0">
+                    <i class="fa-brands fa-sistrix text-gray-400"></i>
+                    <input type="text" placeholder="Search"
+                        class="border-0 w-full md:w-auto outline-none bg-transparent" />
+                </div>
+                <div>
+                    <button class="btn btn-primary w-full sm:w-max">+ New Issue</button>
+                </div>
+            </div>
         </div>
-        
-        <div class="flex flex-col sm:flex-row w-full md:w-auto gap-3 md:gap-2 items-stretch sm:items-center">
-          <div class="input flex items-center gap-2 grow sm:grow-0">
-            <i class="fa-brands fa-sistrix text-gray-400"></i>
-            <input
-              type="text"
-              placeholder="Search"
-              class="border-0 w-full md:w-auto outline-none bg-transparent"
-            />
-          </div>
-          <div>
-            <button class="btn btn-primary w-full sm:w-max">+ New Issue</button>
-          </div>
-        </div>
-      </div>
     </header>
 
     <section
-      class="filter-buttons bg-white w-11/12 md:w-10/12 shadow-sm mx-auto mt-10 rounded-sm p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-2"
-    >
-      <div class="flex flex-col md:flex-row gap-3 w-full md:w-auto">
-        <button class="btn btn-outline w-full md:w-24 p-3">All</button>
-        <button class="btn btn-outline w-full md:w-24 p-3">Open</button>
-        <button class="btn btn-outline w-full md:w-24 p-3">Closed</button>
-      </div>
+        class="filter-buttons bg-white w-11/12 md:w-10/12 shadow-sm mx-auto mt-10 rounded-sm p-4 md:p-6 flex flex-col md:flex-row justify-between items-center gap-6 md:gap-2">
+        <div class="flex flex-col md:flex-row gap-3 w-full md:w-auto">
+            <button class="btn btn-outline w-full md:w-24 p-3">All</button>
+            <button class="btn btn-outline w-full md:w-24 p-3">Open</button>
+            <button class="btn btn-outline w-full md:w-24 p-3">Closed</button>
+        </div>
     </section>
 
     <section
-      class="issues-counter-section bg-white w-11/12 md:w-10/12 shadow-sm mx-auto mt-5 rounded-sm p-4 md:p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-2"
-    >
-      <div class="flex gap-3 items-center">
-        <div class="shrink-0">
-          <img src="assets/Aperture.png" alt="" class="w-8 h-8 md:w-auto" />
+        class="issues-counter-section bg-white w-11/12 md:w-10/12 shadow-sm mx-auto mt-5 rounded-sm p-4 md:p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 md:gap-2">
+        <div class="flex gap-3 items-center">
+            <div class="shrink-0">
+                <img src="assets/Aperture.png" alt="" class="w-8 h-8 md:w-auto" />
+            </div>
+            <div>
+                <h1 class="text-xl font-medium leading-none">
+                    <span id="issues-counter"></span> Issues
+                </h1>
+                <p class="text-xs text-[#64748B] mt-1">
+                    Track and manage your project issues
+                </p>
+            </div>
         </div>
-        <div>
-          <h1 class="text-xl font-medium leading-none">
-            <span id="issues-counter"></span> Issues
-          </h1>
-          <p class="text-xs text-[#64748B] mt-1">
-            Track and manage your project issues
-          </p>
-        </div>
-      </div>
 
-      <div class="flex w-full md:w-auto">
-        <div class="flex justify-start md:justify-center items-center gap-6 md:gap-4">
-          <div class="flex items-center gap-2">
-            <img src="assets/Open-Status.png" alt="" class="w-5 h-5" />
-            <p class="text-sm font-medium">Open</p>
-          </div>
-          <div class="flex items-center gap-2">
-            <img src="assets/Closed- Status .png" alt="" class="w-5 h-5" />
-            <p class="text-sm font-medium">Closed</p>
-          </div>
+        <div class="flex w-full md:w-auto">
+            <div class="flex justify-start md:justify-center items-center gap-6 md:gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="assets/Open-Status.png" alt="" class="w-5 h-5" />
+                    <p class="text-sm font-medium">Open</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <img src="assets/Closed- Status .png" alt="" class="w-5 h-5" />
+                    <p class="text-sm font-medium">Closed</p>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <section class="issues-card"></section>
     
+    <section class="issues-card bg-[#FBFBFB] w-11/12 md:w-10/12 shadow-sm mx-auto mt-5 rounded-sm p-4 md:p-6">
+    <div id="issues-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        </div>
+</section>
+
     <script src="scripts/main.js"></script>
-  </body>
+</body>
+
 </html>
