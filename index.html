@@ -49,17 +49,17 @@
         <fieldset class="fieldset w-xs p-4">
           <div class="mb-3">
             <label class="label text-[16px] text-[black]">Username</label>
-            <input type="email" class="input" placeholder="Enter Username" />
-            <label class="text-primary">Default: admin</label>
+            <input id="username-field" type="email" class="input" placeholder="Enter Username" />
+            <label class="text-primary">Default: admin <span id="incorrect-name" class="text-red-600"></span></label>
           </div>
 
           <div class="mb-3">
             <label class="label text-[16px] text-[black]">Password</label>
-            <input type="password" class="input" placeholder="Enter Password" />
-            <label class="text-primary">Default: admin123</label>
+            <input id="password-field" type="password" class="input" placeholder="Enter Password"/>
+            <label class="text-primary">Default: admin123 <span id="incorrect-pass" class="text-red-600"></span></label>
           </div>
 
-          <button class="btn btn-primary mt-4">Sign In</button>
+          <button id="login-btn" class="btn btn-primary mt-4">Sign In</button>
           <div class="divider text-slate-700 font-medium">OR</div>
           <div class="login-info">
           <h2 class="text-center">Demo Credentials</h2>
@@ -71,5 +71,6 @@
         </fieldset>
       </div>
     </header>
+    <script src="scripts/index.js"></script>
   </body>
 </html>
