@@ -88,7 +88,7 @@ function renderIssues(issues) {
     }
 
     const cardHTML = `
-      <div class="status-border w-full border-t-4 ${borderColor} rounded-sm transition-transform hover:-translate-y-1 hover:shadow-md">
+      <div onclick="openIssueModal('${id}')" class="status-border w-full border-t-4 ${borderColor} rounded-sm transition-transform hover:-translate-y-1 hover:shadow-md cursor-pointer">
         <div class="card bg-base-100 w-full h-full shadow-sm p-4 flex flex-col">
           
           <div class="flex justify-between items-start">
@@ -151,5 +151,63 @@ btnClosed.addEventListener("click", () => {
   );
   renderIssues(closedIssues);
 });
+
+async function openIssueModal(id) {
+    const modal = document.getElementById("issue_modal");
+    const loader = document.getElementById("modal-loader");
+    const content = document.getElementById("modal-content");
+
+    modal.showModal();
+    loader.classList.remove("hidden");
+    content.classList.add("hidden");
+
+        const response = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+        const jsonResponse = await response.json();
+        const issue = jsonResponse.data;
+
+        document.getElementById('modal-title').textContent = issue.title;
+        document.getElementById('modal-author').textContent = issue.author;
+        document.getElementById('modal-assignee').textContent = issue.assignee || "No one is assigned"; 
+        document.getElementById('modal-date').textContent = issue.createdAt.slice(0, 10);
+        document.getElementById('modal-desc').textContent = issue.description;
+
+        const isClosed = issue.status.toLowerCase() === 'closed';
+        const statusBadge = document.getElementById('modal-status-badge');
+        statusBadge.textContent = isClosed ? 'Closed' : 'Opened';
+        statusBadge.className = `badge text-white font-medium border-0 px-3 py-3 rounded-full ${isClosed ? 'bg-purple-600' : 'bg-emerald-500'}`;
+
+        const priorityBadge = document.getElementById('modal-priority');
+        priorityBadge.textContent = issue.priority.toUpperCase();
+        let priorityColor = "bg-gray-400"; 
+        if (issue.priority.toLowerCase() === "high") priorityColor = "bg-red-500";
+        if (issue.priority.toLowerCase() === "medium") priorityColor = "bg-yellow-500";
+        if (issue.priority.toLowerCase() === "low") priorityColor = "bg-blue-500";
+        priorityBadge.className = `badge text-white font-semibold text-xs border-0 px-3 py-3 rounded-full shadow-sm ${priorityColor}`;
+
+        const labelConfig = {
+            "help wanted": { classes: "bg-orange-50 text-orange-600 border border-orange-200", icon: "fa-life-ring" },
+            "bug": { classes: "bg-red-50 text-red-500 border border-red-200", icon: "fa-bug" },
+            "enhancement": { classes: "bg-green-50 text-green-600 border border-green-200", icon: "fa-star" },
+            "good first issue": { classes: "bg-purple-50 text-purple-600 border border-purple-200", icon: "fa-triangle-exclamation" },
+            "documentation": { classes: "bg-gray-50 text-gray-600 border border-gray-200", icon: "fa-tag" },
+        };
+
+        const labelsContainer = document.getElementById('modal-labels');
+        labelsContainer.innerHTML = ''; 
+        
+        if (issue.labels && issue.labels.length > 0) {
+            issue.labels.forEach(label => {
+                const config = labelConfig[label.toLowerCase()] || { classes: "bg-gray-100 text-gray-700 border border-gray-200", icon: "fa-tag" };
+                labelsContainer.innerHTML += `
+                    <span class="badge ${config.classes} rounded-full px-3 py-3 gap-1 text-[10px] sm:text-xs font-bold uppercase tracking-wider">
+                        <i class="fa-solid ${config.icon}"></i> ${label}
+                    </span>
+                `;
+            });
+        }
+
+        loader.classList.add("hidden");
+        content.classList.remove("hidden");
+}
 
 fetchIssues();
