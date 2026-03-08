@@ -51,13 +51,14 @@
           <div class="input flex items-center gap-2 grow sm:grow-0">
             <i class="fa-brands fa-sistrix text-gray-400"></i>
             <input
+              id="search-input"
               type="text"
               placeholder="Search"
               class="border-0 w-full md:w-auto outline-none bg-transparent"
             />
           </div>
           <div>
-            <button class="btn btn-primary w-full sm:w-max">+ New Issue</button>
+            <button id="search-btn" class="btn btn-primary w-full sm:w-max">Search</button>
           </div>
         </div>
       </div>
@@ -120,10 +121,10 @@
         class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
       ></div>
     </section>
-    
+
     <dialog id="issue_modal" class="modal">
       <div class="modal-box w-11/12 max-w-2xl bg-white p-6 md:p-8 rounded-xl">
-        <div id="modal-loader" class="hidden flex justify-center py-10">
+        <div id="modal-loader" class="hidden justify-center py-10">
           <span class="loading loading-spinner loading-lg text-primary"></span>
         </div>
 
