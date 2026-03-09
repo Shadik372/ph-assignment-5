@@ -23,6 +23,6 @@ Building a GitHub Issue Tracker
 
 # Answer to the Question 5
 
-- It is another way to create string with **backtick (` `)**. By using this, we cam format string and also use expressions in the string. 
+- It is another way to create string with **backtick (``)**. By using this, we cam format string and also use expressions in the string. 
 
 
