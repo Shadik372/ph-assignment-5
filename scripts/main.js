@@ -266,4 +266,10 @@ async function handleSearch() {
 
 searchBtn.addEventListener("click", handleSearch);
 
+searchInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    handleSearch();
+  }
+});
+
 fetchIssues();
